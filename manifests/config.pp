@@ -46,24 +46,9 @@ class jupyterhub::config {
     content => epp("${module_name}/start_jupyterhub.sh.epp"),
   }
 
-  case $::initsystem {
-    'sysvinit': {
-      file { "/etc/init.d/${jupyterhub::service_name}":
-        ensure  => file,
-        owner   => 'root',
-        mode    => '0755',
-        content => epp("${module_name}/jupyterhub.init.epp"),
-      }
-    }
-    'systemd': {
-      file { "/etc/systemd/system/${jupyterhub::service_name}.service":
-        ensure  => file,
-        owner   => 'root',
-        content => epp("${module_name}/jupyterhub.service.epp"),
-      }
-    }
-    default: {
-      fail("No supported initsystem found for module ${module_name}")
-    }
+  file { "/etc/systemd/system/${jupyterhub::service_name}.service":
+    ensure  => file,
+    owner   => 'root',
+    content => epp("${module_name}/jupyterhub.service.epp"),
   }
 }

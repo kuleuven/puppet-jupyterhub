@@ -25,14 +25,13 @@
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "6",
-        "7"
+        "9",
+        "10"
       ]
     },
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "6",
         "7"
       ]
     }
