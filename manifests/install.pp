@@ -65,6 +65,7 @@ class jupyterhub::install {
   }
 
   python::pip { 'jupyter':
+    ensure     => $::jupyterhub::pip_version_jupyter,
     pkgname    => 'jupyter',
     virtualenv => $::jupyterhub::pyvenv,
     owner      => $::jupyterhub::jupyterhub_username,
@@ -72,6 +73,7 @@ class jupyterhub::install {
   }
 
   python::pip { 'jupyterhub':
+    ensure     => $::jupyterhub::pip_version_jupyterhub,
     pkgname    => 'jupyterhub',
     virtualenv => $::jupyterhub::pyvenv,
     owner      => $::jupyterhub::jupyterhub_username,
@@ -81,6 +83,7 @@ class jupyterhub::install {
   if $::jupyterhub::sudospawner_enable == true {
 
     python::pip { 'sudospawner':
+      ensure     => $::jupyterhub::pip_version_sudospawner,
       pkgname    => 'sudospawner',
       virtualenv => $::jupyterhub::pyvenv,
       owner      => $::jupyterhub::jupyterhub_username,
@@ -91,6 +94,7 @@ class jupyterhub::install {
   if $::jupyterhub::systemdspawner_enable == true {
 
     python::pip { 'systemdspawner':
+      ensure     => $::jupyterhub::pip_version_systemdspawner,
       pkgname    => 'jupyterhub-systemdspawner',
       virtualenv => $::jupyterhub::pyvenv,
       owner      => $::jupyterhub::jupyterhub_username,
@@ -101,6 +105,7 @@ class jupyterhub::install {
   if $::jupyterhub::batchspawner_enable == true {
 
     python::pip { 'batchspawner':
+      ensure     => $::jupyterhub::pip_version_batchspawner,
       pkgname    => 'batchspawner',
       virtualenv => $::jupyterhub::pyvenv,
       owner      => $::jupyterhub::jupyterhub_username,
@@ -111,7 +116,7 @@ class jupyterhub::install {
   if $::jupyterhub::wrapspawner_enable == true {
 
     python::pip { 'wrapspawner':
-      url        => 'https://github.com/jupyterhub/wrapspawner',
+      ensure     => $::jupyterhub::pip_version_wrapspawner,
       pkgname    => 'wrapspawner',
       virtualenv => $::jupyterhub::pyvenv,
       owner      => $::jupyterhub::jupyterhub_username,
@@ -122,14 +127,16 @@ class jupyterhub::install {
   if $::jupyterhub::oauth_enable == true {
 
     python::pip { 'oauthenticator':
+      ensure     => $::jupyterhub::pip_version_oauthenticator,
       pkgname    => 'oauthenticator',
       virtualenv => $::jupyterhub::pyvenv,
       owner      => $::jupyterhub::jupyterhub_username,
       require    => Python::Pyvenv[$::jupyterhub::pyvenv],
     }
 
-    python::pip { 'requests_oauthlib':
-      pkgname    => 'requests_oauthlib',
+    python::pip { 'requests-oauthlib':
+      ensure     => $::jupyterhub::pip_version_requests_oauthlib,
+      pkgname    => 'requests-oauthlib',
       virtualenv => $::jupyterhub::pyvenv,
       owner      => $::jupyterhub::jupyterhub_username,
       require    => Python::Pyvenv[$::jupyterhub::pyvenv],
