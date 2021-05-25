@@ -93,5 +93,4 @@ jupyterhub::pip_version_systemdspawner: 0.15.0
 jupyterhub::pip_version_batchspawner: 1.1.0
 jupyterhub::pip_version_wrapspawner: 1.0.0
 jupyterhub::pip_version_oauthenticator: 14.0.0
-jupyterhub::pip_version_requests-oauthlib: 1.3.0
-
+jupyterhub::pip_version_requests_oauthlib: 1.3.0
