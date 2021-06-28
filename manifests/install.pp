@@ -124,6 +124,16 @@ class jupyterhub::install {
     }
   }
 
+  if $::jupyterhub::ldap_enable == true {
+    python::pip { 'jupyterhub-ldapauthenticator':
+      ensure     => $::jupyterhub::pip_version_jupyterhub_ldapauthenticator,
+      pkgname    => 'jupyterhub-ldapauthenticator',
+      virtualenv => $::jupyterhub::pyvenv,
+      owner      => $::jupyterhub::jupyterhub_username,
+      require    => Python::Pyvenv[$::jupyterhub::pyvenv],
+    }
+  }
+
   if $::jupyterhub::oauth_enable == true {
 
     python::pip { 'oauthenticator':
